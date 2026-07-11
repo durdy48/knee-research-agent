@@ -117,6 +117,73 @@ def cmd_review_package(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_report_month(args: argparse.Namespace) -> int:
+    from datetime import date
+    from application.use_cases.executive_report import generate_executive_report
+
+    month = args.month or date.today().strftime("%Y-%m")
+    out = generate_executive_report(month)
+    print(f"Executive report written: {out}")
+    return 0
+
+
+def cmd_stats(args: argparse.Namespace) -> int:
+    from application.use_cases.stats import format_stats, gather_stats
+
+    print(format_stats(gather_stats()))
+    return 0
+
+
+def cmd_insights_month(args: argparse.Namespace) -> int:
+    from datetime import date
+    from application.use_cases.personal_insights import generate_personal_insights
+
+    month = args.month or date.today().strftime("%Y-%m")
+    out = generate_personal_insights(month)
+    print(f"Personal insight written: {out}")
+    return 0
+
+
+def cmd_run_research(args: argparse.Namespace) -> int:
+    from application.research_run import ResearchRun, default_areas
+
+    areas = args.area or default_areas()
+    print(f"ResearchRun (Phase 1) over {len(areas)} area(s): {', '.join(areas)}")
+    manifest = ResearchRun().run(areas, resume=args.resume)
+    print(f"Run {manifest['run_id']} — status: {manifest['status']}")
+    for s in manifest["stages"]:
+        if s.get("status") == "completed":
+            print(f"  {s['area']:<32} v{s.get('version','?')}  {s.get('deltas',0)} delta(s)"
+                  f"{'' if s.get('changed') else '  (no change)'}")
+        else:
+            print(f"  {s['area']:<32} {s.get('status')}")
+    print(f"Recorded: runs/{manifest['month']}/{manifest['run_id']}/ (manifest, metrics, logs, outputs)")
+    return 0 if manifest["status"] == "completed" else 1
+
+
+def cmd_consolidate_topic(args: argparse.Namespace) -> int:
+    from application.use_cases.consolidate_knowledge import consolidate_topic_knowledge
+
+    print("Reading validated reviews...")
+    print("Merging evidence...")
+    print("Updating consensus...")
+    print("Updating controversies...")
+    run = consolidate_topic_knowledge(args.area)
+    if not run.changed:
+        print(f"No new evidence for {run.topic_id} — nothing to consolidate (idempotent).")
+        if run.skipped_gate:
+            print(f"Skipped (failed Quality Gates): {', '.join(run.skipped_gate)}")
+        return 0
+    print(f"Confidence: {run.confidence_before} -> {run.confidence_after}")
+    print(f"Knowledge Delta(s) created: {len(run.ledger_ids)}")
+    print(f"Topic version: v{run.version}")
+    print(f"Ledger entries: {', '.join(run.ledger_ids)}")
+    print(f"Saved: knowledge/en/topics/{run.topic_id}/ (+ obsidian/{run.topic_id}.md)")
+    if run.skipped_gate:
+        print(f"Skipped (failed Quality Gates): {', '.join(run.skipped_gate)}")
+    return 0
+
+
 def cmd_benchmark(args: argparse.Namespace) -> int:
     from benchmark import BenchmarkRunner, load_dataset
     from benchmark.models import available, get_reviewer
@@ -215,6 +282,11 @@ def build_parser() -> argparse.ArgumentParser:
     pp.add_argument("--topic", action="append", default=[])
     pp.set_defaults(func=cmd_run_paper)
 
+    pr = runsub.add_parser("research", help="ResearchRun: drive the whole pipeline (Phase 1)")
+    pr.add_argument("--area", action="append", default=[], help="area to run (repeatable; default: all)")
+    pr.add_argument("--resume", default=None, help="resume an existing run id, e.g. RUN-0001")
+    pr.set_defaults(func=cmd_run_research)
+
     p = sub.add_parser("benchmark", help="benchmark the pipeline over a dataset")
     p.add_argument("--dataset", default="gold-standard")
     p.add_argument("--model", default="stub", help="stub | fake | manual | claude")
@@ -225,6 +297,21 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--dataset", default="gold-standard")
     p.add_argument("--out", default="runs/manual/packages")
     p.set_defaults(func=cmd_review_package)
+
+    p = sub.add_parser("consolidate-topic", help="consolidate a topic's validated reviews into a Living Topic + Ledger")
+    p.add_argument("area", help="clinical area, e.g. 'PRP' or 'Mesenchymal Stem Cells'")
+    p.set_defaults(func=cmd_consolidate_topic)
+
+    p = sub.add_parser("report-month", help="generate the monthly Executive Report from the Knowledge Ledger")
+    p.add_argument("--month", default=None, help="YYYY-MM (default: current month)")
+    p.set_defaults(func=cmd_report_month)
+
+    p = sub.add_parser("insights-month", help="generate the monthly Personal Insight ('¿Ha cambiado algo para mí?')")
+    p.add_argument("--month", default=None, help="YYYY-MM (default: current month)")
+    p.set_defaults(func=cmd_insights_month)
+
+    p = sub.add_parser("stats", help="show a one-glance dashboard of the knowledge base and runs")
+    p.set_defaults(func=cmd_stats)
 
     return parser
 

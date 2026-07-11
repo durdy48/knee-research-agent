@@ -1,0 +1,28 @@
+{
+  "_note": "Rellena con tus datos reales. 'patient' = datos estables (edad, cirugías, diagnósticos); 'variables' = datos que cambian (dolor, peso, tratamientos, objetivos). KRA usa esto SOLO para resaltar relevancia; nunca cambia la conclusión científica.",
+  "patient": {
+    "age": null,
+    "sex": null,
+    "injury_history": [],
+    "surgeries": [],
+    "diagnoses": []
+  },
+  "variables": {
+    "pain": null,
+    "weight_kg": null,
+    "strength": null,
+    "activity_frequency": null,
+    "current_treatments": [],
+    "last_mri": null,
+    "updated": ""
+  },
+  "persona": {
+    "language": "es",
+    "report_cadence": "monthly",
+    "technical_level": "high",
+    "priorities": []
+  },
+  "goals": {
+    "goals": []
+  }
+}

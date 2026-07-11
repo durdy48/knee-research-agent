@@ -1,0 +1,11 @@
+{
+  "area": "Clinical Guidelines & Systematic Reviews",
+  "topic_id": "TOPIC-CLINICAL-GUIDELINES-&-SYSTEMATIC-REVIEWS",
+  "confidence_before": 0.5,
+  "confidence_after": 0.6,
+  "version": 2,
+  "ledger_ids": [
+    "KD-2026-00009"
+  ],
+  "skipped_gate": []
+}

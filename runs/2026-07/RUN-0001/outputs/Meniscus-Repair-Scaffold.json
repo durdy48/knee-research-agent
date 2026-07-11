@@ -1,0 +1,12 @@
+{
+  "area": "Meniscus Repair / Scaffold",
+  "topic_id": "TOPIC-MENISCUS-REPAIR-SCAFFOLD",
+  "confidence_before": 0.5,
+  "confidence_after": 0.68,
+  "version": 3,
+  "ledger_ids": [
+    "KD-2026-00013",
+    "KD-2026-00014"
+  ],
+  "skipped_gate": []
+}

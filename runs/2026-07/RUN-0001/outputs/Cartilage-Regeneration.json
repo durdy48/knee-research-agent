@@ -1,0 +1,12 @@
+{
+  "area": "Cartilage Regeneration",
+  "topic_id": "TOPIC-CARTILAGE-REGENERATION",
+  "confidence_before": 0.5,
+  "confidence_after": 0.48,
+  "version": 3,
+  "ledger_ids": [
+    "KD-2026-00007",
+    "KD-2026-00008"
+  ],
+  "skipped_gate": []
+}

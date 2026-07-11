@@ -217,6 +217,21 @@ rather than duplicating them.
 **Personal Insight Generation**
 The step that applies the Personal Intelligence Layer to produce personalised insights.
 
+**Personal Insight Engine**
+The component (`src/core/insight/`) that answers "given all the evidence, what changed for
+*me*?" using a transparent relevance score (Clinical Match + Goal Match + Evidence Strength
++ Novelty). It highlights relevance and suggests prudent next steps; it never changes the
+science (Golden Rule 3) nor prescribes (Golden Rule 5).
+
+**Patient Profile**
+The person's context, in two parts: *Estables* (age, surgeries, diagnoses) and *Variables*
+(pain, weight, strength, activity, current treatments, last MRI, goals). Kept in `patient/`.
+Used only to weight relevance — never to change a scientific conclusion.
+
+**Confidence for You**
+A per-profile confidence (distinct from a Topic's Confidence): how strongly a consolidated
+conclusion applies to the specific person. Currently a prepared placeholder.
+
 **Executive Report**
 The human-readable monthly output summarising what changed, what is worth monitoring,
 and which questions to raise with a healthcare professional.
@@ -230,10 +245,35 @@ one of: *New* (adds knowledge that did not exist), *Reinforcement* (strengthens 
 existing consensus), *Contradiction* (conflicts with the existing consensus) or
 *Irrelevant* (no meaningful effect).
 
+**Knowledge Consolidator**
+The component (design in `docs/knowledge/`) that turns many validated Evidence items about
+one Clinical Topic into a single, confidence-weighted consensus plus explicit controversies,
+preserving history. The "intellectual heart" of KRA; it works with knowledge, not papers.
+
 **Knowledge Diff**
-A structured, dated changelog describing what changed between two versions of a Living
-Clinical Topic — what was added, strengthened, weakened, contradicted or resolved —
-traceable to the evidence that caused each change.
+The *difference* between two versions of a Living Clinical Topic — what was added,
+strengthened, weakened, contradicted or resolved. (The justified, provenance-bearing form of
+this is the **Knowledge Delta**.)
+
+**Knowledge Delta**
+The immutable, human-readable record of one change to a Topic: what changed, why, on what
+evidence, the confidence before/after, the controversy changes, the version link and who
+(which workflow) produced it. The unit that makes knowledge evolution auditable. Design in
+`docs/knowledge/KNOWLEDGE_DELTAS.md`; seeded by `EvolutionEvent` in the knowledge engine.
+
+**Knowledge Ledger**
+The append-only, ordered log of every Knowledge Delta across all Topics — KRA's complete
+historical explainability. Not a blockchain; a faithful audit trail of how the knowledge base
+reached its current state.
+
+**Controversy**
+A first-class object tracking an active disagreement about a specific claim: its supporting
+studies, contradicting studies, possible explanations and *resolution level*. Never deleted;
+preserved explicitly (Golden Rule 2). Design in `docs/knowledge/CONTROVERSY_MODEL.md`.
+
+**Resolution Level**
+The state of a Controversy: *open → emerging → contested → resolving → resolved* (a resolved
+controversy may reopen with new contradicting evidence). Its history is always kept.
 
 **Topic Version**
 A dated state of a Living Clinical Topic. The live state is kept in `current.md`; past

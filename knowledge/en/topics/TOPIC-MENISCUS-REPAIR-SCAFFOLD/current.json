@@ -1,0 +1,43 @@
+{
+  "topic_id": "TOPIC-MENISCUS-REPAIR-SCAFFOLD",
+  "name": "Meniscus Repair / Scaffold",
+  "status": "Living Topic",
+  "version": 3,
+  "confidence": 0.68,
+  "research_confidence": null,
+  "consensus": "",
+  "executive_summary": "",
+  "current_scientific_consensus": "",
+  "evidence_timeline": [],
+  "supporting_evidence": [
+    "10.1186/s43019-025-00293-2",
+    "29340746"
+  ],
+  "contradicting_evidence": [],
+  "controversies": [],
+  "open_questions": [],
+  "relevance_for_patient": "",
+  "discussion_points": [],
+  "references": [],
+  "events": [
+    {
+      "topic_id": "TOPIC-MENISCUS-REPAIR-SCAFFOLD",
+      "date": "2026-07-11",
+      "impact": "New",
+      "papers_added": 1,
+      "confidence_before": 0.5,
+      "confidence_after": 0.6,
+      "summary": "New from 1 review(s)"
+    },
+    {
+      "topic_id": "TOPIC-MENISCUS-REPAIR-SCAFFOLD",
+      "date": "2026-07-11",
+      "impact": "Reinforcement",
+      "papers_added": 1,
+      "confidence_before": 0.6,
+      "confidence_after": 0.68,
+      "summary": "Reinforcement from 1 review(s)"
+    }
+  ],
+  "last_updated": "2026-07-11"
+}

@@ -10,7 +10,24 @@ from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
-from .enums import Impact
+from .enums import Impact, ResolutionLevel
+
+
+class Controversy(BaseModel):
+    """A tracked, first-class disagreement about a specific claim (never deleted).
+
+    See docs/knowledge/CONTROVERSY_MODEL.md. Held explicitly so uncertainty is preserved
+    rather than averaged away (Golden Rule 2).
+    """
+
+    controversy_id: str
+    question: str
+    supporting_studies: List[str] = Field(default_factory=list)
+    contradicting_studies: List[str] = Field(default_factory=list)
+    possible_explanations: List[str] = Field(default_factory=list)
+    resolution_level: ResolutionLevel = ResolutionLevel.open
+    opened: str = ""
+    last_updated: str = ""
 
 
 class EvidenceTimelineEntry(BaseModel):
@@ -36,6 +53,7 @@ class ClinicalTopic(BaseModel):
     topic_id: str
     name: str
     status: str = "Living Topic"
+    version: int = 1  # Topic Version, bumped by each published consolidation
     confidence: float = 0.5  # 0..1, moved by evolution events
     research_confidence: Optional[str] = None
     consensus: str = ""
@@ -44,6 +62,7 @@ class ClinicalTopic(BaseModel):
     evidence_timeline: List[EvidenceTimelineEntry] = Field(default_factory=list)
     supporting_evidence: List[str] = Field(default_factory=list)
     contradicting_evidence: List[str] = Field(default_factory=list)
+    controversies: List[Controversy] = Field(default_factory=list)
     open_questions: List[str] = Field(default_factory=list)
     relevance_for_patient: str = ""
     discussion_points: List[str] = Field(default_factory=list)

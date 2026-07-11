@@ -92,3 +92,13 @@ class RelevanceLevel(str, Enum):
     moderate = "moderate"
     high = "high"
     very_high = "very high"
+
+
+class ResolutionLevel(str, Enum):
+    """Lifecycle state of a Controversy (see docs/knowledge/CONTROVERSY_MODEL.md)."""
+
+    open = "open"
+    emerging = "emerging"
+    contested = "contested"
+    resolving = "resolving"
+    resolved = "resolved"

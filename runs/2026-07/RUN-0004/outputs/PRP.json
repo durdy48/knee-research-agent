@@ -1,0 +1,9 @@
+{
+  "area": "PRP",
+  "topic_id": "TOPIC-PRP",
+  "confidence_before": 0.64,
+  "confidence_after": 0.64,
+  "version": 5,
+  "ledger_ids": [],
+  "skipped_gate": []
+}

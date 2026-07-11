@@ -1,0 +1,59 @@
+{
+  "topic_id": "TOPIC-CARTILAGE-REGENERATION",
+  "name": "Cartilage Regeneration",
+  "status": "Living Topic",
+  "version": 3,
+  "confidence": 0.48,
+  "research_confidence": null,
+  "consensus": "",
+  "executive_summary": "",
+  "current_scientific_consensus": "",
+  "evidence_timeline": [],
+  "supporting_evidence": [
+    "10.1016/j.arthro.2019.08.024"
+  ],
+  "contradicting_evidence": [
+    "10.2106/00004623-200403000-00001"
+  ],
+  "controversies": [
+    {
+      "controversy_id": "TOPIC-CARTILAGE-REGENERATION-C1",
+      "question": "Nuance against ACI superiority: at 2 years microfracture was not inferior and scored better on SF-36 physical component.",
+      "supporting_studies": [
+        "10.1016/j.arthro.2019.08.024"
+      ],
+      "contradicting_studies": [
+        "10.2106/00004623-200403000-00001"
+      ],
+      "possible_explanations": [],
+      "resolution_level": "open",
+      "opened": "2026-07-11",
+      "last_updated": "2026-07-11"
+    }
+  ],
+  "open_questions": [],
+  "relevance_for_patient": "",
+  "discussion_points": [],
+  "references": [],
+  "events": [
+    {
+      "topic_id": "TOPIC-CARTILAGE-REGENERATION",
+      "date": "2026-07-11",
+      "impact": "New",
+      "papers_added": 1,
+      "confidence_before": 0.5,
+      "confidence_after": 0.6,
+      "summary": "New from 1 review(s)"
+    },
+    {
+      "topic_id": "TOPIC-CARTILAGE-REGENERATION",
+      "date": "2026-07-11",
+      "impact": "Contradiction",
+      "papers_added": 1,
+      "confidence_before": 0.6,
+      "confidence_after": 0.48,
+      "summary": "Contradiction from 1 review(s)"
+    }
+  ],
+  "last_updated": "2026-07-11"
+}

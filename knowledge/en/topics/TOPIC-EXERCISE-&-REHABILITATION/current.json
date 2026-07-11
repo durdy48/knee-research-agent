@@ -1,0 +1,33 @@
+{
+  "topic_id": "TOPIC-EXERCISE-&-REHABILITATION",
+  "name": "Exercise & Rehabilitation",
+  "status": "Living Topic",
+  "version": 2,
+  "confidence": 0.6,
+  "research_confidence": null,
+  "consensus": "",
+  "executive_summary": "",
+  "current_scientific_consensus": "",
+  "evidence_timeline": [],
+  "supporting_evidence": [
+    "10.1002/14651858.CD004376.pub3"
+  ],
+  "contradicting_evidence": [],
+  "controversies": [],
+  "open_questions": [],
+  "relevance_for_patient": "",
+  "discussion_points": [],
+  "references": [],
+  "events": [
+    {
+      "topic_id": "TOPIC-EXERCISE-&-REHABILITATION",
+      "date": "2026-07-11",
+      "impact": "New",
+      "papers_added": 1,
+      "confidence_before": 0.5,
+      "confidence_after": 0.6,
+      "summary": "New from 1 review(s)"
+    }
+  ],
+  "last_updated": "2026-07-11"
+}

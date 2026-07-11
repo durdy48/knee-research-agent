@@ -44,6 +44,21 @@ def runs_dir() -> Path:
     return root() / "runs"
 
 
+def knowledge_en_dir() -> Path:
+    """Canonical (English) Living Topics produced by the Consolidator."""
+    return root() / "knowledge" / "en" / "topics"
+
+
+def ledger_file() -> Path:
+    """Append-only Knowledge Ledger (one KnowledgeDelta per line)."""
+    return root() / "knowledge" / "ledger.jsonl"
+
+
+def obsidian_dir() -> Path:
+    """Spanish, human-facing view of the knowledge base (not the source of truth)."""
+    return root() / "obsidian"
+
+
 def templates_dir() -> Path:
     return root() / "templates"
 

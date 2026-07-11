@@ -12,16 +12,24 @@ from .enums import (
     Impact,
     PaperStatus,
     RelevanceLevel,
+    ResolutionLevel,
     RiskOfBias,
     StudyType,
     classify_evidence,
 )
 from .paper import Claim, Paper, PaperReview
-from .topic import ClinicalTopic, EvidenceTimelineEntry, EvolutionEvent
+from .topic import ClinicalTopic, Controversy, EvidenceTimelineEntry, EvolutionEvent
+from .delta import KnowledgeDelta
 from .evidence import Evidence
 from .insight import Insight
 from .report import ExecutiveReport
-from .patient import PatientProfile, Persona, PersonalContext, PersonalGoals
+from .patient import (
+    PatientProfile,
+    PatientVariables,
+    Persona,
+    PersonalContext,
+    PersonalGoals,
+)
 
 __all__ = [
     "ids",
@@ -34,17 +42,21 @@ __all__ = [
     "Impact",
     "RiskOfBias",
     "RelevanceLevel",
+    "ResolutionLevel",
     # models
     "Paper",
     "Claim",
     "PaperReview",
     "ClinicalTopic",
+    "Controversy",
+    "KnowledgeDelta",
     "EvidenceTimelineEntry",
     "EvolutionEvent",
     "Evidence",
     "Insight",
     "ExecutiveReport",
     "PatientProfile",
+    "PatientVariables",
     "Persona",
     "PersonalGoals",
     "PersonalContext",
