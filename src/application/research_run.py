@@ -118,6 +118,15 @@ class ResearchRun:
             manifest["insight"] = str(Path(insight).relative_to(paths.root()))
             manifest["phase"] = 3
             self._append(log, f"Personal insight: {manifest['insight']}")
+            # Phase 4: Obsidian sync (topic views + this month's report & insight).
+            try:
+                from application.use_cases.obsidian_sync import sync_obsidian
+                vault = sync_obsidian(month)
+                manifest["obsidian"] = str(vault)
+                manifest["phase"] = 4
+                self._append(log, f"Obsidian sync: {vault}")
+            except Exception as e:  # syncing to an external vault must not fail the run
+                self._append(log, f"Obsidian sync skipped: {e!r}")
             manifest["status"] = "completed"
         except Exception as e:  # a stage failed: record, preserve completed stages
             manifest["status"] = "failed"

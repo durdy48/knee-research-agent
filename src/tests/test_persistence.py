@@ -40,8 +40,8 @@ def main() -> int:
 
         # Views written (canonical English + Spanish Obsidian).
         assert (Path(d) / "knowledge/en/topics/TOPIC-X/current.md").is_file()
-        assert (Path(d) / "obsidian/TOPIC-X.md").is_file()
-        assert "disputed?" in (Path(d) / "obsidian/TOPIC-X.md").read_text(encoding="utf-8")
+        assert (Path(d) / "obsidian/Temas/TOPIC-X.md").is_file()
+        assert "disputed?" in (Path(d) / "obsidian/Temas/TOPIC-X.md").read_text(encoding="utf-8")
 
         # Ledger ids are sequential and immutable-append.
         id1 = store.append_delta(KnowledgeDelta(delta_id="a", topic_id="TOPIC-X", date="2026-01-01", impact=Impact.new))

@@ -127,6 +127,17 @@ def cmd_report_month(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_obsidian_sync(args: argparse.Namespace) -> int:
+    from datetime import date
+    from application.use_cases.obsidian_sync import sync_obsidian
+
+    month = args.month or date.today().strftime("%Y-%m")
+    out = sync_obsidian(month)
+    print(f"Obsidian view synced to: {out}")
+    print("Tip: set KRA_OBSIDIAN_DIR to a folder inside your vault to sync there directly.")
+    return 0
+
+
 def cmd_stats(args: argparse.Namespace) -> int:
     from application.use_cases.stats import format_stats, gather_stats
 
@@ -312,6 +323,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     p = sub.add_parser("stats", help="show a one-glance dashboard of the knowledge base and runs")
     p.set_defaults(func=cmd_stats)
+
+    p = sub.add_parser("obsidian-sync", help="sync topic views + the month's report/insight to the Obsidian folder")
+    p.add_argument("--month", default=None, help="YYYY-MM (default: current month)")
+    p.set_defaults(func=cmd_obsidian_sync)
 
     return parser
 

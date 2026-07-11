@@ -1,6 +1,38 @@
 #!/usr/bin/env bash
 # kra — Knee Research Agent CLI launcher.
-# Runs the MVP CLI without requiring installation.
+# Runs the MVP CLI without requiring installation. Picks a Python interpreter that
+# actually has the runtime deps (pydantic) — the system `python3` often does not.
+# Override the choice with KRA_PYTHON=/path/to/python.
 set -euo pipefail
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-exec python3 "$here/src/cli/main.py" "$@"
+
+pick_python() {
+  if [ -n "${KRA_PYTHON:-}" ]; then
+    echo "$KRA_PYTHON"
+    return 0
+  fi
+  # Prefer an active pyenv version, then whatever is on PATH.
+  local candidates=(python3 python)
+  if command -v pyenv >/dev/null 2>&1; then
+    local pyenv_py
+    pyenv_py="$(pyenv which python 2>/dev/null || true)"
+    [ -n "$pyenv_py" ] && candidates=("$pyenv_py" "${candidates[@]}")
+  fi
+  local py
+  for py in "${candidates[@]}"; do
+    if command -v "$py" >/dev/null 2>&1 && "$py" -c "import pydantic" >/dev/null 2>&1; then
+      echo "$py"
+      return 0
+    fi
+  done
+  return 1
+}
+
+if ! py="$(pick_python)"; then
+  echo "kra: no Python with 'pydantic' found on PATH." >&2
+  echo "     Install the deps:  python3 -m pip install -r \"$here/requirements.txt\"" >&2
+  echo "     or point KRA_PYTHON at an interpreter that has them." >&2
+  exit 1
+fi
+
+exec "$py" "$here/src/cli/main.py" "$@"
