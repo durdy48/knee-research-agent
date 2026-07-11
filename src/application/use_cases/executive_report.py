@@ -45,7 +45,8 @@ def _open_questions_for(area: str, provider: ManualAIProvider, gold) -> List[str
     return qs
 
 
-def generate_executive_report(month: str, *, run_dir: Optional[Path] = None) -> Path:
+def generate_executive_report(month: str, *, run_dir: Optional[Path] = None,
+                              out_dir: Optional[Path] = None) -> Path:
     gold = load_dataset(name="gold-standard")
     provider = ManualAIProvider(paths.runs_dir() / "manual" / "reviews")
     store = KnowledgeStore()
@@ -127,7 +128,7 @@ def generate_executive_report(month: str, *, run_dir: Optional[Path] = None) -> 
             lines.append(f"- Ejecución: {m.get('run_id')} ({m.get('started')} → {m.get('finished')})")
     lines += ["- Coste: $0.00 · Proveedor: manual", ""]
 
-    out_dir = paths.ensure(paths.root() / "reports")
-    out = out_dir / f"{month}.md"
+    dest = paths.ensure(out_dir if out_dir is not None else paths.root() / "reports")
+    out = dest / f"{month}.md"
     out.write_text("\n".join(lines), encoding="utf-8")
     return out
