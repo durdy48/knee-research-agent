@@ -17,6 +17,9 @@ env/
 *.key
 *.pem
 
+# Personal medical data — stays on the local machine, never pushed (see docs/SECURITY_AND_PRIVACY.md)
+patient/profile.json
+
 # Generated benchmark artefacts (keep the curated reviews, drop generated packages)
 runs/manual/packages/
 
