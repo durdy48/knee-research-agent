@@ -9,6 +9,9 @@ Relevance is a simple, transparent, adjustable score:
 
     Relevance = mean(Clinical Match, Goal Match, Evidence Strength, Novelty)
 
+where Clinical Match covers the person's conditions *and* their current treatments, so a
+change to a treatment you are on lifts relevance (and can turn the monthly state red).
+
 Output includes the fixed "¿Ha cambiado algo para mí?" indicator with three states
 (green / yellow / red). "Confidence for You" (a per-profile confidence) is left as a
 prepared placeholder — distinct from the Topic's confidence.
@@ -117,7 +120,11 @@ class PersonalInsightReport:
 
 
 def _clinical_match(terms: set, ctx: PersonalContext) -> float:
-    facts = ctx.patient.diagnoses + ctx.patient.injury_history + ctx.patient.surgeries
+    # A topic is clinically relevant if it concerns one of the person's conditions
+    # (diagnoses / injury history / surgeries) OR a treatment they are currently on — a
+    # change to your own treatment matters to you, so it should lift relevance too.
+    facts = (ctx.patient.diagnoses + ctx.patient.injury_history + ctx.patient.surgeries
+             + ctx.variables.current_treatments)
     if not any(f.strip() for f in facts if f):
         return 0.5  # unknown profile -> neutral, honest
     return 1.0 if _matches(facts, terms) else 0.3
