@@ -59,6 +59,27 @@ def test_relevance_prefers_matching_profile() -> None:
     assert ex.relevance >= prp.relevance
 
 
+def test_bilingual_profile_matching() -> None:
+    """A Spanish profile must match the English topic names via the bilingual lexicon."""
+    eng = PersonalInsightEngine()
+    topics = [_topic("TOPIC-MENISCUS-REPAIR-SCAFFOLD", "Meniscus Repair / Scaffold", 0.6),
+              _topic("TOPIC-PRP", "PRP", 0.6)]
+    deltas = {"TOPIC-MENISCUS-REPAIR-SCAFFOLD": [{"impact": "New"}],
+              "TOPIC-PRP": [{"impact": "New"}]}
+
+    # Spanish diagnosis 'rotura de menisco' must lift the (English-named) meniscus topic.
+    ctx = PersonalContext(patient=PatientProfile(diagnoses=["Rotura de menisco interno"]))
+    rep = eng.generate("2026-07", topics, deltas, ctx)
+    men = next(i for i in rep.items if i.topic.startswith("Meniscus"))
+    prp = next(i for i in rep.items if i.topic == "PRP")
+    assert men.relevance > prp.relevance, "Spanish diagnosis should match the English topic"
+
+    # A Spanish treatment name for PRP must trigger the red alert on a contradiction.
+    ctx2 = PersonalContext(variables=PatientVariables(current_treatments=["Plasma rico en plaquetas"]))
+    r = eng.generate("2026-07", topics, {"TOPIC-PRP": [{"impact": "Contradiction"}]}, ctx2)
+    assert r.state == "red", "Spanish treatment name should match TOPIC-PRP and turn the state red"
+
+
 def test_render_if_knowledge_exists() -> None:
     if not paths.ledger_file().is_file():
         return
@@ -73,6 +94,7 @@ def test_render_if_knowledge_exists() -> None:
 def main() -> int:
     test_states_and_safety()
     test_relevance_prefers_matching_profile()
+    test_bilingual_profile_matching()
     test_render_if_knowledge_exists()
     print("OK — personal insight test passed (states + relevance + safety + render)")
     return 0
