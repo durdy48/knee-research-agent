@@ -19,17 +19,22 @@ def main() -> int:
         print("SKIP — no ledger yet (run `kra run research` first)")
         return 0
 
+    import tempfile
+
     from application.use_cases.executive_report import generate_executive_report
 
-    out = generate_executive_report("2026-07")
-    text = out.read_text(encoding="utf-8")
-    for header in ["## Resumen ejecutivo", "## Cambios por tema", "## Controversias abiertas",
-                   "## Preguntas de investigación", "## Métricas de la ejecución"]:
-        assert header in text, f"missing section: {header}"
-    assert "PRP" in text
-    assert "Knowledge Deltas" in text
-    # Determinism: same inputs -> identical report.
-    assert generate_executive_report("2026-07").read_text(encoding="utf-8") == text
+    # Read the real knowledge base, but write to a temp dir so the test never mutates
+    # the repo's reports/ (this is an integration test, not a fixture).
+    with tempfile.TemporaryDirectory() as tmp:
+        out = generate_executive_report("2026-07", out_dir=Path(tmp))
+        text = out.read_text(encoding="utf-8")
+        for header in ["## Resumen ejecutivo", "## Cambios por tema", "## Controversias abiertas",
+                       "## Preguntas de investigación", "## Métricas de la ejecución"]:
+            assert header in text, f"missing section: {header}"
+        assert "PRP" in text
+        assert "Knowledge Deltas" in text
+        # Determinism: same inputs -> identical report.
+        assert generate_executive_report("2026-07", out_dir=Path(tmp)).read_text(encoding="utf-8") == text
 
     print("OK — executive report test passed (5 sections + reproducible)")
     return 0
