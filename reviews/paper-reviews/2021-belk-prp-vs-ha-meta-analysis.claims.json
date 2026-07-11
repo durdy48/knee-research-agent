@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "paper_id": "PAPER-2026-0001",
+  "source_review": "reviews/paper-reviews/2021-belk-prp-vs-ha-meta-analysis.md",
+  "extracted_at": "2026-07-11",
+  "extraction": "manual (human-supervised MVP run, from abstract/secondary summaries)",
+  "claims": [
+    {
+      "claim_id": "CLAIM-2026-0001",
+      "topic": "TOPIC-PRP",
+      "claim": "Intra-articular PRP improves clinical outcomes compared with HA in knee osteoarthritis.",
+      "supporting_data": "Pooled analysis of 18 RCTs (811 patients), Level of Evidence 1.",
+      "evidence_level": 5,
+      "atomic": true,
+      "needs_full_text_confirmation": false
+    },
+    {
+      "claim_id": "CLAIM-2026-0002",
+      "topic": "TOPIC-PRP",
+      "claim": "PRP was superior to HA in WOMAC total, WOMAC physical function and VAS at 3, 6 and 12 months.",
+      "supporting_data": "Meta-analytic comparison of patient-reported outcomes across timepoints.",
+      "evidence_level": 5,
+      "atomic": true,
+      "needs_full_text_confirmation": true
+    },
+    {
+      "claim_id": "CLAIM-2026-0003",
+      "topic": "TOPIC-PRP",
+      "claim": "Leukocyte-rich and leukocyte-poor PRP showed no significant difference in WOMAC or VAS scores.",
+      "supporting_data": "Subgroup analysis of PRP formulations (LR-PRP vs LP-PRP).",
+      "evidence_level": 5,
+      "atomic": true,
+      "needs_full_text_confirmation": true
+    },
+    {
+      "claim_id": "CLAIM-2026-0004",
+      "topic": "TOPIC-PRP",
+      "claim": "Leukocyte-poor PRP may be superior to leukocyte-rich PRP in IKDC scores.",
+      "supporting_data": "Subgroup analysis of PRP formulations (LR-PRP vs LP-PRP).",
+      "evidence_level": 5,
+      "atomic": true,
+      "needs_full_text_confirmation": true
+    }
+  ]
+}

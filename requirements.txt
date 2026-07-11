@@ -1,0 +1,4 @@
+# Knee Research Agent — runtime dependencies
+# Domain models are Pydantic v2 (the official language of the system).
+pydantic>=2.5
+pydantic-settings>=2.1

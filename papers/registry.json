@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "description": "Paper Registry — the entry point of the pipeline. Tracks which papers exist, their processing state, and where their Paper Review lives. See papers/README.md.",
+  "id_conventions": {
+    "paper": "PAPER-YYYY-NNNN",
+    "claim": "CLAIM-YYYY-NNNN",
+    "topic": "TOPIC-<name>",
+    "report": "REPORT-YYYY-MM",
+    "run": "RUN-YYYY-MM-NNN"
+  },
+  "states": ["discovered", "pending_review", "reviewed", "consolidated"],
+  "papers": [
+    {
+      "paper_id": "PAPER-2026-0001",
+      "doi": "10.1177/0363546520909397",
+      "pmid": "32302218",
+      "title": "Platelet-Rich Plasma Versus Hyaluronic Acid for Knee Osteoarthritis: A Systematic Review and Meta-analysis of Randomized Controlled Trials",
+      "year": 2021,
+      "study_type": "Systematic Review / Meta-analysis",
+      "status": "reviewed",
+      "review": "reviews/paper-reviews/2021-belk-prp-vs-ha-meta-analysis.md",
+      "claims": "reviews/paper-reviews/2021-belk-prp-vs-ha-meta-analysis.claims.json",
+      "topics": ["TOPIC-PRP"],
+      "discovered_at": "2026-07-11",
+      "last_updated": "2026-07-11"
+    }
+  ]
+}

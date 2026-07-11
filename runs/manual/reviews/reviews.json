@@ -1,0 +1,172 @@
+{
+  "GOLD-PRP-001": {
+    "study_type": "Systematic Review / Meta-analysis",
+    "evidence_level": 5,
+    "primary_findings": "Meta-analysis of 18 RCTs (811 patients) comparing intra-articular PRP with hyaluronic acid for knee osteoarthritis; PRP showed better clinical scores at 3, 6 and 12 months.",
+    "reinforces_existing": "Supports a favourable effect of PRP over HA on knee OA symptoms.",
+    "main_limitations": ["Heterogeneous PRP preparation and injection protocols across trials."],
+    "open_questions": ["Which PRP formulation (leukocyte-rich vs leukocyte-poor) is optimal?"],
+    "claims": [
+      {"text": "Intra-articular PRP improves clinical outcomes compared with HA in knee osteoarthritis.", "supporting_data": "Pooled analysis of 18 RCTs (811 patients).", "evidence_level": 5, "needs_full_text_confirmation": true},
+      {"text": "PRP was superior to HA in WOMAC total, WOMAC physical function and VAS at 3, 6 and 12 months.", "supporting_data": "Pooled WOMAC and VAS differences favouring PRP at all three timepoints.", "evidence_level": 5, "needs_full_text_confirmation": true},
+      {"text": "Leukocyte-rich and leukocyte-poor PRP showed no significant difference in WOMAC or VAS scores.", "supporting_data": "Subgroup comparison LR-PRP vs LP-PRP.", "evidence_level": 5, "needs_full_text_confirmation": true},
+      {"text": "Leukocyte-poor PRP may be superior to leukocyte-rich PRP in IKDC scores.", "supporting_data": "IKDC subgroup favoured LP-PRP.", "evidence_level": 5, "needs_full_text_confirmation": true}
+    ]
+  },
+  "GOLD-PRP-002": {
+    "study_type": "Systematic Review / Meta-analysis",
+    "evidence_level": 5,
+    "primary_findings": "Meta-analysis of 10 RCTs (~1069 patients) of intra-articular PRP versus control for knee osteoarthritis, reporting improved WOMAC pain and function at 12 months.",
+    "reinforces_existing": "Reinforces the favourable PRP signal reported by other meta-analyses.",
+    "main_limitations": ["Variable control interventions (HA or saline) across included trials."],
+    "open_questions": ["Durability of benefit beyond 12 months."],
+    "claims": [
+      {"text": "Intra-articular PRP improves WOMAC pain scores at 12 months compared with control in knee osteoarthritis.", "supporting_data": "Pooled WOMAC pain at 12 months across 10 RCTs.", "evidence_level": 5, "needs_full_text_confirmation": true},
+      {"text": "Intra-articular PRP improves WOMAC physical function scores at 12 months compared with control in knee osteoarthritis.", "supporting_data": "Pooled WOMAC function at 12 months.", "evidence_level": 5, "needs_full_text_confirmation": true},
+      {"text": "PRP showed no significant difference from control in adverse event rates.", "supporting_data": "Pooled adverse-event analysis.", "evidence_level": 5, "needs_full_text_confirmation": true}
+    ]
+  },
+  "GOLD-PRP-003": {
+    "study_type": "Randomized Controlled Trial",
+    "evidence_level": 2,
+    "primary_findings": "RESTORE, a placebo-controlled RCT in 288 patients, found intra-articular PRP no better than saline for knee pain or medial tibial cartilage volume at 12 months.",
+    "contradicts_existing": "Contradicts the favourable PRP-vs-control meta-analyses: a rigorous RCT found PRP no better than placebo.",
+    "main_limitations": ["Single PRP formulation; results may not generalise to all preparations."],
+    "open_questions": ["Do specific PRP formulations or patient subgroups still benefit?"],
+    "claims": [
+      {"text": "Intra-articular PRP was not superior to placebo saline injection for knee pain at 12 months in knee osteoarthritis.", "supporting_data": "Mean change in pain -2.1 (PRP) vs -1.8 (placebo) on an 11-point scale; not significant.", "evidence_level": 2, "needs_full_text_confirmation": true},
+      {"text": "Intra-articular PRP did not slow the loss of medial tibial cartilage volume compared with placebo at 12 months.", "supporting_data": "No significant between-group difference in medial tibial cartilage volume.", "evidence_level": 2, "needs_full_text_confirmation": true}
+    ]
+  },
+  "GOLD-PRP-004": {
+    "study_type": "Systematic Review / Meta-analysis",
+    "evidence_level": 5,
+    "primary_findings": "Meta-analysis of randomized trials indicating intra-articular PRP reduces pain and improves function versus control in knee osteoarthritis.",
+    "reinforces_existing": "A third independent synthesis consistent with a favourable PRP effect.",
+    "main_limitations": ["Between-trial heterogeneity in PRP protocols and follow-up."],
+    "open_questions": ["How to reconcile positive meta-analyses with the negative RESTORE RCT?"],
+    "claims": [
+      {"text": "Intra-articular PRP reduces pain (WOMAC / VAS) compared with control in knee osteoarthritis.", "supporting_data": "Pooled pain outcomes across included RCTs.", "evidence_level": 5, "needs_full_text_confirmation": true},
+      {"text": "Intra-articular PRP improves function compared with control in knee osteoarthritis.", "supporting_data": "Pooled function outcomes across included RCTs.", "evidence_level": 5, "needs_full_text_confirmation": true}
+    ]
+  },
+  "GOLD-GUIDE-001": {
+    "study_type": "Clinical Guideline",
+    "evidence_level": null,
+    "primary_findings": "OARSI 2019 guideline for non-surgical management of knee, hip and polyarticular osteoarthritis; defines core treatments and grades pharmacological options.",
+    "main_limitations": ["Guideline recommendations depend on comorbidity profile; not a single-population prescription."],
+    "open_questions": ["How strictly are core treatments implemented in routine care?"],
+    "claims": [
+      {"text": "Core treatments for knee osteoarthritis are arthritis education and structured land-based exercise, with or without dietary weight management.", "supporting_data": "OARSI 2019 core-treatment recommendation for all patients.", "evidence_level": null, "needs_full_text_confirmation": true},
+      {"text": "Topical NSAIDs are strongly recommended for knee osteoarthritis.", "supporting_data": "Strong recommendation for knee-only OA.", "evidence_level": null, "needs_full_text_confirmation": true},
+      {"text": "Oral and transdermal opioids are strongly not recommended for knee osteoarthritis.", "supporting_data": "Strong recommendation against opioids.", "evidence_level": null, "needs_full_text_confirmation": true},
+      {"text": "Acetaminophen (paracetamol) is conditionally not recommended for knee osteoarthritis.", "supporting_data": "Conditional recommendation against acetaminophen.", "evidence_level": null, "needs_full_text_confirmation": true}
+    ]
+  },
+  "GOLD-EXER-001": {
+    "study_type": "Systematic Review / Meta-analysis (Cochrane)",
+    "evidence_level": 5,
+    "primary_findings": "Cochrane review of land-based therapeutic exercise for knee osteoarthritis: reduces pain and improves physical function, with benefit sustained for months after treatment.",
+    "reinforces_existing": "Level 1 support for exercise as a core treatment (aligns with OARSI 2019).",
+    "main_limitations": ["Heterogeneous exercise programmes; wide variation in intensity and supervision."],
+    "open_questions": ["Which exercise modality and dose maximise durability of benefit?"],
+    "claims": [
+      {"text": "Land-based therapeutic exercise reduces knee pain in osteoarthritis (about 12 points on a 0-100 scale immediately after treatment).", "supporting_data": "Pooled pain reduction ~12/100 across 44 trials.", "evidence_level": 5, "needs_full_text_confirmation": true},
+      {"text": "Land-based therapeutic exercise improves physical function in knee osteoarthritis (about 10 points on a 0-100 scale immediately after treatment).", "supporting_data": "Pooled function improvement ~10/100.", "evidence_level": 5, "needs_full_text_confirmation": true},
+      {"text": "The benefit of land-based exercise is sustained for at least 2 to 6 months after treatment ends.", "supporting_data": "Sustained effect at 2-6 month follow-up.", "evidence_level": 5, "needs_full_text_confirmation": true}
+    ]
+  },
+  "GOLD-MSC-001": {
+    "study_type": "Systematic Review / Meta-analysis",
+    "evidence_level": 5,
+    "primary_findings": "Systematic review and meta-analysis of mesenchymal stem cell therapy for knee osteoarthritis and chondral defects, reporting improvement in patient-reported pain and function.",
+    "reinforces_existing": "Suggests a possible benefit of MSC therapy, with important caveats.",
+    "main_limitations": ["Substantial heterogeneity in cell source, dose and delivery limits certainty."],
+    "open_questions": ["Which MSC source and dose, if any, are effective?"],
+    "claims": [
+      {"text": "Intra-articular mesenchymal stem cell therapy is associated with improvement in patient-reported pain and function in knee osteoarthritis in pooled analyses.", "supporting_data": "Pooled patient-reported outcome improvement across RCTs.", "evidence_level": 5, "needs_full_text_confirmation": true},
+      {"text": "Evidence for MSC therapy is limited by substantial heterogeneity in cell source, dose and delivery.", "supporting_data": "Wide variability across included studies noted by the authors.", "evidence_level": 5, "needs_full_text_confirmation": true}
+    ]
+  },
+  "GOLD-MSC-002": {
+    "study_type": "Systematic Review / Meta-analysis",
+    "evidence_level": 5,
+    "primary_findings": "Systematic review and meta-analysis of randomized trials of MSC injection for chronic knee pain secondary to osteoarthritis; evidence of benefit is limited.",
+    "contradicts_existing": "Tempers optimistic MSC findings: some randomized comparisons show no difference from placebo.",
+    "main_limitations": ["Few high-quality RCTs; short follow-up in several trials."],
+    "open_questions": ["Are apparent MSC benefits explained by placebo/contextual effects?"],
+    "claims": [
+      {"text": "Evidence from randomized trials supporting mesenchymal stem cell injection for chronic knee pain secondary to osteoarthritis remains limited.", "supporting_data": "Authors' conclusion on the strength of RCT evidence.", "evidence_level": 5, "needs_full_text_confirmation": true},
+      {"text": "Some analyses find intra-articular mesenchymal stem cell injection no different from placebo for knee pain.", "supporting_data": "Null between-group differences in some included comparisons.", "evidence_level": 5, "needs_full_text_confirmation": true}
+    ]
+  },
+  "GOLD-CART-001": {
+    "study_type": "Systematic Review / Meta-analysis",
+    "evidence_level": 5,
+    "primary_findings": "Meta-analysis of 12 RCTs (659 patients) comparing autologous chondrocyte implantation (ACI) with microfracture for knee cartilage lesions.",
+    "reinforces_existing": "Supports ACI over microfracture in the medium term for focal cartilage defects.",
+    "main_limitations": ["Variable defect size and follow-up length across trials."],
+    "open_questions": ["Does ACI's advantage persist at long-term (>5 year) follow-up?"],
+    "claims": [
+      {"text": "Autologous chondrocyte implantation shows better improvement in quality of life than microfracture at 5-year follow-up for knee cartilage lesions.", "supporting_data": "Pooled QoL favouring ACI at 5 years.", "evidence_level": 5, "needs_full_text_confirmation": true},
+      {"text": "Autologous chondrocyte implantation shows better pain relief than microfracture at 2-year follow-up.", "supporting_data": "Pooled pain outcomes favouring ACI at 2 years.", "evidence_level": 5, "needs_full_text_confirmation": true}
+    ]
+  },
+  "GOLD-CART-002": {
+    "study_type": "Randomized Controlled Trial",
+    "evidence_level": 2,
+    "primary_findings": "Randomized trial (Knutsen et al.) comparing ACI with microfracture for a single femoral condyle cartilage defect, with 2-year follow-up.",
+    "contradicts_existing": "Nuance against ACI superiority: at 2 years microfracture was not inferior and scored better on SF-36 physical component.",
+    "main_limitations": ["Single-defect population; 2-year horizon may miss later divergence."],
+    "open_questions": ["Do longer-term outcomes favour ACI as other syntheses suggest?"],
+    "claims": [
+      {"text": "In a randomized trial of a single femoral condyle cartilage defect, microfracture showed better SF-36 physical component improvement than autologous chondrocyte implantation at 2 years.", "supporting_data": "SF-36 physical component score favoured microfracture at 2 years.", "evidence_level": 2, "needs_full_text_confirmation": true},
+      {"text": "Both autologous chondrocyte implantation and microfracture improved clinical outcomes from baseline at 2 years.", "supporting_data": "Within-group improvement in both arms.", "evidence_level": 2, "needs_full_text_confirmation": true}
+    ]
+  },
+  "GOLD-MEN-001": {
+    "study_type": "Systematic Review / Meta-analysis",
+    "evidence_level": 5,
+    "primary_findings": "Systematic review and meta-analysis of artificial meniscus scaffolds (collagen and polyurethane) for partial meniscus injury, reporting improved clinical scores from baseline.",
+    "reinforces_existing": "Supports symptomatic benefit of meniscal scaffolds, usually with concomitant procedures.",
+    "main_limitations": ["Mostly fair-to-good quality studies; frequent concomitant procedures confound attribution."],
+    "open_questions": ["Long-term durability and chondroprotection remain unclear."],
+    "claims": [
+      {"text": "Meniscal scaffold implantation (collagen or polyurethane) improves VAS pain, Lysholm and Tegner scores from baseline to latest follow-up.", "supporting_data": "Improvement in VAS, Lysholm and Tegner across 26 studies.", "evidence_level": 5, "needs_full_text_confirmation": true},
+      {"text": "Treatment failure occurred in about 9.9% of Actifit and 6.7% of collagen meniscus implant patients over roughly 3.5 years.", "supporting_data": "Failure 9.9% (Actifit, ~40 mo) and 6.7% (CMI, ~44 mo).", "evidence_level": 5, "needs_full_text_confirmation": true}
+    ]
+  },
+  "GOLD-MEN-002": {
+    "study_type": "Systematic Review",
+    "evidence_level": 5,
+    "primary_findings": "Systematic review comparing collagen and polyurethane meniscal scaffolds, finding broadly similar clinical outcomes.",
+    "reinforces_existing": "Consistent with GOLD-MEN-001 on comparable outcomes between scaffold types.",
+    "main_limitations": ["Few direct head-to-head comparisons."],
+    "open_questions": ["Are there subgroups where one scaffold outperforms the other?"],
+    "claims": [
+      {"text": "Collagen and polyurethane meniscal scaffolds yield similar clinical outcomes.", "supporting_data": "Comparable improvement across scaffold types in the review.", "evidence_level": 5, "needs_full_text_confirmation": true}
+    ]
+  },
+  "GOLD-EARLY-001": {
+    "study_type": "Classification Criteria / Consensus",
+    "evidence_level": null,
+    "primary_findings": "Luyten et al. classification criteria for early knee osteoarthritis, requiring the absence of definitive radiographic OA plus clinical and structural features.",
+    "main_limitations": ["Criteria are for classification, not diagnosis; require validation across cohorts."],
+    "open_questions": ["How well do the criteria identify patients who progress?"],
+    "claims": [
+      {"text": "Early knee osteoarthritis requires the absence of definitive radiographic OA (Kellgren-Lawrence grade 0 or 1).", "supporting_data": "Criterion: no definitive radiographic OA (KL 0-1).", "evidence_level": null, "needs_full_text_confirmation": true},
+      {"text": "Classification of early knee OA combines knee pain with structural or arthroscopic cartilage findings.", "supporting_data": "Criteria combine patient-reported pain with imaging/arthroscopic structural findings.", "evidence_level": null, "needs_full_text_confirmation": true}
+    ]
+  },
+  "GOLD-EARLY-002": {
+    "study_type": "Scoping Review",
+    "evidence_level": null,
+    "primary_findings": "Scoping review mapping how early-stage knee osteoarthritis has been defined across the literature, finding wide inconsistency.",
+    "contradicts_existing": "Highlights that no single definition is agreed, complicating comparison across studies.",
+    "main_limitations": ["Descriptive mapping; does not itself propose a validated definition."],
+    "open_questions": ["Which definition should the field standardise on?"],
+    "claims": [
+      {"text": "There is no single agreed definition of early-stage knee osteoarthritis across the literature.", "supporting_data": "Wide heterogeneity of definitions identified across included studies.", "evidence_level": null, "needs_full_text_confirmation": true}
+    ]
+  }
+}
