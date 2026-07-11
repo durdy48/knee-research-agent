@@ -5,14 +5,30 @@ from enum import Enum
 from typing import Optional
 
 
-class PaperStatus(str, Enum):
+class StrValueEnum(str, Enum):
+    """A string enum that renders as its *value*, not `ClassName.member`.
+
+    Python 3.11 changed how mixed-in enums format: `f"{Impact.new}"` now yields
+    `"Impact.new"` instead of the value `"New"`. Human-facing views (Obsidian topics,
+    executive reports) interpolate these directly, so we restore value formatting here.
+    An Enum with no members can be subclassed, so all string enums extend this.
+    """
+
+    def __str__(self) -> str:
+        return str(self.value)
+
+    def __format__(self, spec: str) -> str:
+        return format(self.value, spec)
+
+
+class PaperStatus(StrValueEnum):
     discovered = "discovered"
     pending_review = "pending_review"
     reviewed = "reviewed"
     consolidated = "consolidated"
 
 
-class StudyType(str, Enum):
+class StudyType(StrValueEnum):
     meta_analysis = "Meta-analysis"
     systematic_review = "Systematic Review"
     rct = "Randomized Controlled Trial"
@@ -34,7 +50,7 @@ class EvidenceLevel(int, Enum):
     meta_analysis = 5
 
 
-class EvidenceClass(str, Enum):
+class EvidenceClass(StrValueEnum):
     """Evidence Classification — the *kind* of evidence rating a document deserves.
 
     Graded study designs get a star level; documents that do not fit the 1-5 scale
@@ -72,7 +88,7 @@ def classify_evidence(study_type: Optional[str]) -> EvidenceClass:
     return EvidenceClass.unclassified
 
 
-class Impact(str, Enum):
+class Impact(StrValueEnum):
     """Change Analyzer output (see GLOSSARY: Impact Classification)."""
 
     new = "New"
@@ -81,20 +97,20 @@ class Impact(str, Enum):
     irrelevant = "Irrelevant"
 
 
-class RiskOfBias(str, Enum):
+class RiskOfBias(StrValueEnum):
     low = "Low"
     moderate = "Moderate"
     high = "High"
 
 
-class RelevanceLevel(str, Enum):
+class RelevanceLevel(StrValueEnum):
     low = "low"
     moderate = "moderate"
     high = "high"
     very_high = "very high"
 
 
-class ResolutionLevel(str, Enum):
+class ResolutionLevel(StrValueEnum):
     """Lifecycle state of a Controversy (see docs/knowledge/CONTROVERSY_MODEL.md)."""
 
     open = "open"

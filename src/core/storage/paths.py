@@ -55,8 +55,31 @@ def ledger_file() -> Path:
 
 
 def obsidian_dir() -> Path:
-    """Spanish, human-facing view of the knowledge base (not the source of truth)."""
+    """Spanish, human-facing view of the knowledge base (not the source of truth).
+
+    Defaults to `<repo>/obsidian`, but can be pointed at a real Obsidian vault folder with
+    the KRA_OBSIDIAN_DIR environment variable (e.g. a folder inside your vault). Useful when
+    you run KRA locally and want the notes to appear directly in Obsidian.
+    """
+    override = os.environ.get("KRA_OBSIDIAN_DIR")
+    if override:
+        return Path(override)
     return root() / "obsidian"
+
+
+def obsidian_temas_dir() -> Path:
+    """Living Topics view (Spanish), persistent — updated in place each run."""
+    return obsidian_dir() / "Temas"
+
+
+def obsidian_topic_file(topic_id: str) -> Path:
+    """Where a topic's Spanish Obsidian view lives (single source for store + sync)."""
+    return obsidian_temas_dir() / f"{topic_id}.md"
+
+
+def obsidian_informes_dir(month: str) -> Path:
+    """Monthly reports view (Spanish), immutable — one folder per month (YYYY-MM)."""
+    return obsidian_dir() / "Informes" / month
 
 
 def templates_dir() -> Path:

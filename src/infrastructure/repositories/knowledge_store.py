@@ -7,7 +7,7 @@ Layout (canonical source of truth in English):
         current.md            <- rendered English view
         history/<date>-v<n>.md <- Evidence Snapshots (never overwritten)
     knowledge/ledger.jsonl    <- append-only Knowledge Ledger (one delta per line)
-    obsidian/<TOPIC-ID>.md    <- Spanish human-facing view (not the source of truth)
+    obsidian/Temas/<TOPIC-ID>.md <- Spanish human-facing view (not the source of truth)
 
 Golden Rule 7 (Knowledge Integrity): knowledge evolves, history is never lost.
 """
@@ -27,7 +27,6 @@ class KnowledgeStore:
     def __init__(self) -> None:
         self.en_dir = paths.knowledge_en_dir()
         self.ledger = paths.ledger_file()
-        self.obsidian = paths.obsidian_dir()
 
     def _topic_dir(self, topic_id: str) -> Path:
         return self.en_dir / topic_id
@@ -57,9 +56,10 @@ class KnowledgeStore:
         (tdir / "current.json").write_text(topic.model_dump_json(indent=2), encoding="utf-8")
         cur_md.write_text(render_topic_en(topic), encoding="utf-8")
 
-        # Spanish Obsidian view (a view, not the source of truth).
-        self.obsidian.mkdir(parents=True, exist_ok=True)
-        (self.obsidian / f"{topic.topic_id}.md").write_text(render_topic_es(topic), encoding="utf-8")
+        # Spanish Obsidian view (a view, not the source of truth), under Temas/.
+        obsidian_topic = paths.obsidian_topic_file(topic.topic_id)
+        obsidian_topic.parent.mkdir(parents=True, exist_ok=True)
+        obsidian_topic.write_text(render_topic_es(topic), encoding="utf-8")
         return cur_md
 
     # -- ledger ------------------------------------------------------------------
