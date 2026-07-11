@@ -68,11 +68,13 @@ Derived directly from `ADR-0001`:
 | Prompts | English |
 | Documentation (`docs/`) | English |
 | Literature queries (PubMed, etc.) | English |
-| Consolidated knowledge (Obsidian / `knowledge/`) | Spanish |
-| Executive reports and monthly summaries | Spanish |
+| Canonical consolidated knowledge (`knowledge/en/`) | English |
+| Patient-facing view (`obsidian/`) and executive reports | Spanish |
 
-Rule of thumb: everything technical or agent-facing is in **English**; everything the
-patient reads (knowledge base and reports) is in **Spanish**.
+Rule of thumb: everything technical or agent-facing is in **English** — including the
+**canonical** knowledge base in `knowledge/en/` (the source of truth). The patient-facing
+Spanish lives in the `obsidian/` view and the reports, which are *rendered from* the
+canonical knowledge, never the source of truth.
 
 ---
 
@@ -120,15 +122,17 @@ knee-research-agent/
 ├── papers/               ← Paper Registry (registry.json)
 ├── reviews/              ← produced Paper Reviews (+ claims)
 ├── runs/                 ← run records; runs/manual/ holds manual review packages & answers
+├── knowledge/            ← consolidated knowledge: en/topics/<id>/ (canonical, English) + ledger.jsonl
+├── obsidian/             ← Spanish, human-facing view of the knowledge base (a view, not the source)
 ├── templates/            ← Living Topic / Report / Review / Insight templates
 ├── agents/               ← agent role specs and workflow coordinations (English)
 ├── prompts/              ← agent prompts (English)
 └── workflows/            ← research-cycle workflow descriptions
 ```
 
-Folders created only when later sprints reach them: `knowledge/` (Spanish Clinical
-Topics), `patient/` (Patient Profile, Persona, Personal Goals), `reports/` (monthly
-executive reports), `scripts/` (automation). Do not assume a folder exists — check first.
+Folders created only when later sprints reach them: `patient/` (Patient Profile, Persona,
+Personal Goals), `reports/` (monthly executive reports), `scripts/` (automation). Do not
+assume a folder exists — check first.
 
 ---
 
@@ -216,8 +220,9 @@ gap.
 
 ## 10. Clinical Topic template
 
-When creating or updating a Clinical Topic in `knowledge/`, use this structure
-(content in Spanish):
+The canonical Living Topic lives in `knowledge/en/topics/<id>/` (English, source of truth);
+the Spanish `obsidian/` view is rendered from it. The patient-facing view uses this
+structure (Spanish):
 
 - **Resumen** — one-paragraph current state.
 - **Nivel de evidencia** — star rating per the Evidence Quality Scale.

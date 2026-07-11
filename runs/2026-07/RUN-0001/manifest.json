@@ -1,0 +1,75 @@
+{
+  "run_id": "RUN-0001",
+  "month": "2026-07",
+  "phase": 1,
+  "status": "completed",
+  "started": "2026-07-11T21:35:49",
+  "finished": "2026-07-11T21:35:49",
+  "areas": [
+    "Cartilage Regeneration",
+    "Clinical Guidelines & Systematic Reviews",
+    "Early Knee Osteoarthritis",
+    "Exercise & Rehabilitation",
+    "Meniscus Repair / Scaffold",
+    "Mesenchymal Stem Cells",
+    "PRP"
+  ],
+  "stages": [
+    {
+      "area": "Cartilage Regeneration",
+      "status": "completed",
+      "deltas": 2,
+      "version": 3,
+      "reviewed": 2,
+      "changed": true
+    },
+    {
+      "area": "Clinical Guidelines & Systematic Reviews",
+      "status": "completed",
+      "deltas": 1,
+      "version": 2,
+      "reviewed": 1,
+      "changed": true
+    },
+    {
+      "area": "Early Knee Osteoarthritis",
+      "status": "completed",
+      "deltas": 2,
+      "version": 3,
+      "reviewed": 2,
+      "changed": true
+    },
+    {
+      "area": "Exercise & Rehabilitation",
+      "status": "completed",
+      "deltas": 1,
+      "version": 2,
+      "reviewed": 1,
+      "changed": true
+    },
+    {
+      "area": "Meniscus Repair / Scaffold",
+      "status": "completed",
+      "deltas": 2,
+      "version": 3,
+      "reviewed": 2,
+      "changed": true
+    },
+    {
+      "area": "Mesenchymal Stem Cells",
+      "status": "completed",
+      "deltas": 0,
+      "version": 3,
+      "reviewed": 2,
+      "changed": false
+    },
+    {
+      "area": "PRP",
+      "status": "completed",
+      "deltas": 0,
+      "version": 5,
+      "reviewed": 4,
+      "changed": false
+    }
+  ]
+}

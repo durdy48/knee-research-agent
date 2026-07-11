@@ -87,25 +87,118 @@ development and analyse the results** before building more. Let the metrics poin
 
 ---
 
-## Sprint 5B — Knowledge production
+## Sprint 5B — Knowledge production (design first)
 
-- Automatic **Topic Update** (apply an Evidence Update to a Living Clinical Topic).
-- **Knowledge consolidation** across papers into Living Clinical Topics (`knowledge/`).
-- **Controversy detection** feeding the topic's consensus/uncertainty.
-- **Knowledge Diff** generation between topic versions.
+Design the "intellectual heart" before writing its code — same rigour as `SPECIFICATION.md`.
 
-## Sprint 5C — Delivery & persistence
+- [x] **Design docs** in `docs/knowledge/`: `KNOWLEDGE_CONSOLIDATION.md` (the rulebook),
+  `CONFIDENCE_MODEL.md`, `CONTROVERSY_MODEL.md`, `KNOWLEDGE_DELTAS.md` (+ the Knowledge
+  Ledger concept). Glossary updated with the new terms.
+- [x] **Knowledge Consolidation Engine** (`src/core/consolidation/`): six deterministic
+  components (Evidence Merger, Consensus Builder, Controversy Manager, Confidence
+  Calculator, Delta Generator, Event Log) + orchestrating engine. New domain models:
+  `Controversy`, `KnowledgeDelta`, Topic `version`. Behaviour tests + a generic run over
+  TOPIC-PRP and TOPIC-MSC (same engine, different topics).
+- [x] **Engine review passed** — determinism, idempotency (reprocessing a paper is a
+  no-op; a new version only appears on real change), explainability (each Delta names the
+  CONFIDENCE_MODEL rule + triggering evidence + before/after) and Living-Topic integrity
+  (never duplicated, never overwritten without history, always emits a Delta). End-to-end
+  test added: Paper → Review → Quality Gates → Consolidation → Delta → Topic.
+- [x] **Persistence (review passed), in order:**
+  1. `kra consolidate-topic <area>` command.
+  2. Living Topic persisted to `knowledge/en/topics/<id>/` (canonical: `current.json` +
+     `current.md`, with `history/` Evidence Snapshots).
+  3. Append-only **Knowledge Ledger** at `knowledge/ledger.jsonl` (ids `KD-YYYY-NNNNN`,
+     each entry naming the rule, evidence and confidence move).
+  4. Spanish `obsidian/<id>.md` view (rendered from the canonical topic — not the source).
+  Verified end to end: TOPIC-PRP (v5, 4 deltas, controversy preserved) and TOPIC-MSC (v3),
+  idempotent on re-run.
 
-- **Executive Report** generation (`reports/YYYY-MM.md`, Spanish).
-- **Personal Insight** generation (needs the Patient Profile in `patient/`).
-- **Obsidian** renderer for the knowledge vault.
-- **Git** persistence of the knowledge base.
+## Sprint 6 — ResearchRun (one command, the whole pipeline)
 
-## Sprint 6 — Scale, only if the metrics ask for it
+Design first (`docs/RESEARCH_RUN.md`), then automate by phases.
+
+- [x] **`docs/RESEARCH_RUN.md`** — what a run is, artifacts, states, failure handling, resume.
+- [x] **Phase 1** — `kra run research`: drives Review → Quality Gates → Knowledge
+  Consolidation across areas, recording `runs/YYYY-MM/RUN-NNNN/` (manifest, metrics, logs,
+  outputs). Deterministic, idempotent, resumable. First real run consolidated all 7 areas.
+- [x] **Phase 2** — **Executive Report**: `kra report-month` (and run Phase 2) generates a
+  reproducible Spanish `reports/YYYY-MM.md` from the Ledger, with five sections (resumen,
+  cambios por tema, controversias abiertas, preguntas de investigación, métricas). First
+  report covers all 7 topics, 14 deltas and 4 open controversies.
+- [x] **Phase 3** — **Personal Insight Engine** (`src/core/insight/`): connects consolidated
+  knowledge to the `patient/` profile. Relevance = Clinical Match + Goal Match + Evidence
+  Strength + Novelty; a fixed "¿Ha cambiado algo para mí?" indicator (🟢/🟡/🔴); prudent,
+  non-prescriptive actions; a "Confidence for You" placeholder. `kra insights-month` and
+  run Phase 3 write `reports/YYYY-MM-insights.md` (Spanish). Never changes the science
+  (Rule 3), never prescribes (Rule 5).
+- [ ] **Phase 4** — Obsidian sync as a discrete stage (today produced inline by consolidation).
+
+## Sprint 7 — Proactivity
+
+- Alerts on relevant change (new evidence → consensus change → High Priority for the user).
+
+## Sprint 8 — Real sources & scheduling
+
+- Real integration with TomeSphere / PubMed / ClinicalTrials.gov; automatic discovery of new
+  evidence; periodic scheduling (cron / GitHub Actions).
+
+## Sprint 9 — Scale & compare, only if the metrics ask for it
 
 - Expand the Gold Standard to **30–40 papers** *if the benchmark shows a gap*.
-- **Model comparison** across providers (Claude / GPT / Gemini / local).
-- **Cost and time** optimisation.
+- **Model comparison** across providers (Claude / GPT / Gemini / local); cost/time optimisation.
+
+---
+
+## Release Candidate (RC1) — Hardening & real use *(current phase)*
+
+The system is functionally complete for a first version. The priority now is **not more
+features** but answering: *would you trust it to run automatically every month for two
+years?* Four blocks:
+
+- [x] **1. Repository hygiene** — `README.md`, `CHANGELOG.md`, `CONTRIBUTING.md`,
+  `.editorconfig`, `Makefile`, `.gitignore`. (Optional: `pre-commit` with black/ruff/mypy.)
+- [x] **2. Observability** — `kra stats`: a one-glance dashboard of the knowledge base and runs.
+- [x] **3. Architectural docs** — `docs/DECISIONS.md` (why KRA is different) and
+  `docs/SECURITY_AND_PRIVACY.md`.
+- [~] **4. Real validation** — *the most important step*. For 2–3 months, do **not** touch
+  the architecture. Run KRA monthly as a user and note: did the report help? was there noise?
+  did it catch anything genuinely interesting? were the priorities right? what did I ignore?
+  Those observations are worth more than a dozen new features.
+  - **Automated monthly run set up** (2026-07): a scheduled task `kra-monthly-run` runs
+    `kra run research` on day 1 of each month (08:00) and delivers the Executive Report +
+    Personal Insight as a monthly check-in. Each run counts toward the **6 monthly runs**
+    that gate KRA v2. Caveat: until a real literature source or an API key is connected, the
+    run is idempotent ("no changes") — a valid, honest signal; the habit and mechanism are
+    the point for now.
+- [x] **LICENSE** — MIT (permissive; the author, as sole copyright holder, can relicense
+  later). A medical-disclaimer note is appended.
+
+## Declaring v1.0 — a symbolic snapshot (when validation is done)
+
+When KRA is declared **v1.0** (after the 2–3 month validation phase), freeze a full,
+immutable copy of the project as a photograph of the knowledge and the system at that moment:
+
+```
+archive/KRA-v1.0/   ← docs, benchmark, Gold Standard, architecture, example reports, metrics
+```
+
+It will be fascinating to compare it with KRA v2/v3 years from now. Symbolic, not urgent —
+do it the day you decide the validation phase is complete.
+
+## Strategic direction — KRA v2 (later, after real use)
+
+Kept as project memory; **do not build yet**:
+
+- **Automatic evidence discovery** — robust integration with PubMed, ClinicalTrials.gov,
+  Semantic Scholar (and TomeSphere if it adds value) + scheduled alerts, so `kra monthly`
+  runs unattended and removes the manual step.
+- **Evidence Timeline** — open a topic and see how its consensus evolved over years (e.g.
+  PRP 2018→2026 with RESTORE marked), to answer *"how has the scientific consensus changed
+  over the last ten years?"*. Needs real data over months.
+- **A technical article** — *"Building a Deterministic Knowledge Evolution Engine for Living
+  Medical Evidence"* — the architecture (Knowledge Deltas, Living Topics, evidence↔
+  personalisation separation, auditable ledger) is interesting in its own right.
 
 ---
 

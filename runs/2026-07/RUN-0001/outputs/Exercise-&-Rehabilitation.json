@@ -1,0 +1,11 @@
+{
+  "area": "Exercise & Rehabilitation",
+  "topic_id": "TOPIC-EXERCISE-&-REHABILITATION",
+  "confidence_before": 0.5,
+  "confidence_after": 0.6,
+  "version": 2,
+  "ledger_ids": [
+    "KD-2026-00012"
+  ],
+  "skipped_gate": []
+}

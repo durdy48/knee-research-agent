@@ -1,0 +1,12 @@
+{
+  "area": "Early Knee Osteoarthritis",
+  "topic_id": "TOPIC-EARLY-KNEE-OSTEOARTHRITIS",
+  "confidence_before": 0.5,
+  "confidence_after": 0.48,
+  "version": 3,
+  "ledger_ids": [
+    "KD-2026-00010",
+    "KD-2026-00011"
+  ],
+  "skipped_gate": []
+}
