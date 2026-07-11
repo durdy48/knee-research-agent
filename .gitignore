@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Secrets / local config (never commit an API key)
+.env
+.env.*
+*.key
+*.pem
+
+# Generated benchmark artefacts (keep the curated reviews, drop generated packages)
+runs/manual/packages/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

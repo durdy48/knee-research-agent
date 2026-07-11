@@ -1,0 +1,333 @@
+{
+  "name": "gold-standard",
+  "gold_version": "1.0",
+  "description": "Reference dataset for benchmarking KRA. Three parts: Gold Papers (entries), Gold Reviews (each entry's canonical claims + metadata) and Gold Topics (expected Living Clinical Topic after integrating the papers). Entries must be REAL, verifiable papers with human-curated gold data. Never fabricate papers or findings. Curation is a human decision (Principle 8): 'proposed' entries await approval; only 'curated' entries count in the benchmark. Target: 30 articles across the areas below.",
+  "areas": {
+    "PRP": 6,
+    "Mesenchymal Stem Cells": 5,
+    "Cartilage Regeneration": 5,
+    "Meniscus Repair / Scaffold": 4,
+    "Exercise & Rehabilitation": 4,
+    "Early Knee Osteoarthritis": 3,
+    "Clinical Guidelines & Systematic Reviews": 3
+  },
+  "entries": [
+    {
+      "gold_id": "GOLD-PRP-001",
+      "area": "PRP",
+      "title": "Platelet-Rich Plasma Versus Hyaluronic Acid for Knee Osteoarthritis: A Systematic Review and Meta-analysis of Randomized Controlled Trials",
+      "doi": "10.1177/0363546520909397",
+      "pmid": "32302218",
+      "year": 2021,
+      "study_type": "Systematic Review / Meta-analysis",
+      "evidence_level": 5,
+      "status": "curated",
+      "rationale": "Level 1 synthesis (18 RCTs, 811 patients) directly comparing PRP vs HA; anchors the PRP topic.",
+      "selected_by": "seed",
+      "gold_claims": [
+        {"text": "Intra-articular PRP improves clinical outcomes compared with HA in knee osteoarthritis.", "evidence_level": 5},
+        {"text": "PRP was superior to HA in WOMAC total, WOMAC physical function and VAS at 3, 6 and 12 months.", "evidence_level": 5},
+        {"text": "Leukocyte-rich and leukocyte-poor PRP showed no significant difference in WOMAC or VAS scores.", "evidence_level": 5},
+        {"text": "Leukocyte-poor PRP may be superior to leukocyte-rich PRP in IKDC scores.", "evidence_level": 5}
+      ]
+    },
+    {
+      "gold_id": "GOLD-PRP-002",
+      "area": "PRP",
+      "title": "Efficacy of Platelet-Rich Plasma in the Treatment of Knee Osteoarthritis: A Meta-analysis of Randomized Controlled Trials",
+      "doi": "10.1016/j.arthro.2016.09.024",
+      "pmid": "28012636",
+      "year": 2017,
+      "study_type": "Systematic Review / Meta-analysis",
+      "evidence_level": 5,
+      "status": "curated",
+      "rationale": "Level 1 meta-analysis (10 RCTs, ~1069 patients); reinforces the favourable PRP signal on WOMAC pain/function at 12 months. DOI to be reconfirmed against the full text.",
+      "selected_by": "Antonio",
+      "gold_claims": [
+        {"text": "Intra-articular PRP improves WOMAC pain scores at 12 months compared with control in knee osteoarthritis.", "evidence_level": 5},
+        {"text": "Intra-articular PRP improves WOMAC physical function scores at 12 months compared with control in knee osteoarthritis.", "evidence_level": 5},
+        {"text": "PRP showed no significant difference from control in adverse event rates.", "evidence_level": 5}
+      ]
+    },
+    {
+      "gold_id": "GOLD-PRP-003",
+      "area": "PRP",
+      "title": "Effect of Intra-articular Platelet-Rich Plasma vs Placebo Injection on Pain and Medial Tibial Cartilage Volume in Patients With Knee Osteoarthritis: The RESTORE Randomized Clinical Trial",
+      "doi": "10.1001/jama.2021.19415",
+      "pmid": "34812863",
+      "year": 2021,
+      "study_type": "Randomized Controlled Trial",
+      "evidence_level": 2,
+      "status": "curated",
+      "rationale": "Rigorous placebo-controlled RCT (288 patients) that CONTRADICTS the favourable PRP signal. Included deliberately to preserve scientific uncertainty (Golden Rule 2). DOI to be reconfirmed against the full text.",
+      "selected_by": "Antonio",
+      "gold_claims": [
+        {"text": "Intra-articular PRP was not superior to placebo (saline) injection for knee pain at 12 months in knee osteoarthritis.", "evidence_level": 2},
+        {"text": "Intra-articular PRP did not slow the loss of medial tibial cartilage volume compared with placebo at 12 months.", "evidence_level": 2}
+      ]
+    },
+    {
+      "gold_id": "GOLD-PRP-004",
+      "area": "PRP",
+      "title": "Effectiveness of Platelet-Rich Plasma in the Treatment of Knee Osteoarthritis: A Meta-analysis of Randomized Controlled Clinical Trials",
+      "doi": "10.1177/2325967120973284",
+      "pmid": "33553445",
+      "year": 2021,
+      "study_type": "Systematic Review / Meta-analysis",
+      "evidence_level": 5,
+      "status": "curated",
+      "rationale": "Independent meta-analysis of RCTs on PRP efficacy for knee OA; third synthesis alongside Belk and Dai. DOI/PMID to be reconfirmed against the full text.",
+      "selected_by": "Antonio",
+      "gold_claims": [
+        {"text": "Intra-articular PRP reduces pain (WOMAC / VAS) compared with control in knee osteoarthritis.", "evidence_level": 5},
+        {"text": "Intra-articular PRP improves function compared with control in knee osteoarthritis.", "evidence_level": 5}
+      ]
+    },
+    {
+      "gold_id": "GOLD-GUIDE-001",
+      "area": "Clinical Guidelines & Systematic Reviews",
+      "title": "OARSI guidelines for the non-surgical management of knee, hip, and polyarticular osteoarthritis",
+      "doi": "10.1016/j.joca.2019.06.011",
+      "pmid": null,
+      "year": 2019,
+      "study_type": "Clinical Practice Guideline",
+      "evidence_level": null,
+      "status": "curated",
+      "rationale": "The reference international guideline for non-surgical knee OA management; sets the standard-of-care baseline. DOI/citation to be reconfirmed against the full text.",
+      "selected_by": "Antonio",
+      "gold_claims": [
+        {"text": "Core treatments for knee osteoarthritis are arthritis education and structured land-based exercise, with or without dietary weight management."},
+        {"text": "Topical NSAIDs are strongly recommended for knee osteoarthritis."},
+        {"text": "Oral and transdermal opioids are strongly not recommended for knee osteoarthritis."},
+        {"text": "Acetaminophen (paracetamol) is conditionally not recommended for knee osteoarthritis."},
+        {"text": "Intra-articular corticosteroids and intra-articular hyaluronic acid are recommended depending on comorbidity status."}
+      ]
+    },
+    {
+      "gold_id": "GOLD-EXER-001",
+      "area": "Exercise & Rehabilitation",
+      "title": "Exercise for osteoarthritis of the knee",
+      "doi": "10.1002/14651858.CD004376.pub3",
+      "pmid": "26405113",
+      "year": 2015,
+      "study_type": "Systematic Review / Meta-analysis (Cochrane)",
+      "evidence_level": 5,
+      "status": "curated",
+      "rationale": "Landmark Cochrane review (land-based exercise for knee OA); anchors the Exercise & Rehabilitation topic with Level 1 evidence.",
+      "selected_by": "Antonio",
+      "gold_claims": [
+        {"text": "Land-based therapeutic exercise reduces knee pain in osteoarthritis (about 12 points on a 0-100 scale immediately after treatment).", "evidence_level": 5},
+        {"text": "Land-based therapeutic exercise improves physical function in knee osteoarthritis (about 10 points on a 0-100 scale immediately after treatment).", "evidence_level": 5},
+        {"text": "The benefit of land-based exercise is sustained for at least 2 to 6 months after treatment ends.", "evidence_level": 5}
+      ]
+    },
+    {
+      "gold_id": "GOLD-MSC-001",
+      "area": "Mesenchymal Stem Cells",
+      "title": "Regenerative Potential of Mesenchymal Stem Cells for the Treatment of Knee Osteoarthritis and Chondral Defects: A Systematic Review and Meta-analysis",
+      "doi": "10.1016/j.arthro.2020.05.037",
+      "pmid": "32502714",
+      "year": 2021,
+      "study_type": "Systematic Review / Meta-analysis",
+      "evidence_level": 5,
+      "status": "curated",
+      "rationale": "Level 1 synthesis of MSC therapy for knee OA and chondral defects; anchors the MSC topic. DOI/PMID to be reconfirmed against the full text.",
+      "selected_by": "Antonio",
+      "gold_claims": [
+        {"text": "Intra-articular mesenchymal stem cell therapy is associated with improvement in patient-reported pain and function in knee osteoarthritis in pooled analyses.", "evidence_level": 5},
+        {"text": "Evidence for MSC therapy is limited by substantial heterogeneity in cell source, dose and delivery.", "evidence_level": 5}
+      ]
+    },
+    {
+      "gold_id": "GOLD-MSC-002",
+      "area": "Mesenchymal Stem Cells",
+      "title": "Mesenchymal stem cells for chronic knee pain secondary to osteoarthritis: A systematic review and meta-analysis of randomized trials",
+      "doi": "10.1016/j.joca.2024.05.005",
+      "pmid": "38777213",
+      "year": 2024,
+      "study_type": "Systematic Review / Meta-analysis",
+      "evidence_level": 5,
+      "status": "curated",
+      "rationale": "Recent RCT-level synthesis; included to preserve uncertainty — some analyses find MSC no different from placebo for pain (Golden Rule 2). DOI/PMID to be reconfirmed.",
+      "selected_by": "Antonio",
+      "gold_claims": [
+        {"text": "Evidence from randomized trials supporting mesenchymal stem cell injection for chronic knee pain secondary to osteoarthritis remains limited.", "evidence_level": 5},
+        {"text": "Some analyses find intra-articular mesenchymal stem cell injection no different from placebo for knee pain.", "evidence_level": 5}
+      ]
+    },
+    {
+      "gold_id": "GOLD-CART-001",
+      "area": "Cartilage Regeneration",
+      "title": "Autologous Chondrocyte Implantation Versus Microfracture in the Knee: A Meta-analysis and Systematic Review",
+      "doi": "10.1016/j.arthro.2019.08.024",
+      "pmid": "31708355",
+      "year": 2020,
+      "study_type": "Systematic Review / Meta-analysis",
+      "evidence_level": 5,
+      "status": "curated",
+      "rationale": "Level 1 synthesis (12 RCTs, 659 patients) comparing ACI vs microfracture; anchors the cartilage-regeneration topic. DOI/PMID to be reconfirmed.",
+      "selected_by": "Antonio",
+      "gold_claims": [
+        {"text": "Autologous chondrocyte implantation shows better improvement in quality of life than microfracture at 5-year follow-up for knee cartilage lesions.", "evidence_level": 5},
+        {"text": "Autologous chondrocyte implantation shows better pain relief than microfracture at 2-year follow-up.", "evidence_level": 5}
+      ]
+    },
+    {
+      "gold_id": "GOLD-CART-002",
+      "area": "Cartilage Regeneration",
+      "title": "Autologous chondrocyte implantation compared with microfracture in the knee. A randomized trial",
+      "doi": "10.2106/00004623-200403000-00001",
+      "pmid": "14996869",
+      "year": 2004,
+      "study_type": "Randomized Controlled Trial",
+      "evidence_level": 2,
+      "status": "curated",
+      "rationale": "Landmark RCT (Knutsen et al.) directly comparing ACI vs microfracture; included as a nuance — at 2 years microfracture was not inferior. Preserves uncertainty. DOI/PMID to be reconfirmed.",
+      "selected_by": "Antonio",
+      "gold_claims": [
+        {"text": "In a randomized trial of a single femoral condyle cartilage defect, microfracture showed better SF-36 physical component improvement than autologous chondrocyte implantation at 2 years.", "evidence_level": 2},
+        {"text": "Both autologous chondrocyte implantation and microfracture improved clinical outcomes from baseline at 2 years.", "evidence_level": 2}
+      ]
+    },
+    {
+      "gold_id": "GOLD-MEN-001",
+      "area": "Meniscus Repair / Scaffold",
+      "title": "Clinical outcomes of artificial meniscus scaffolds for partial meniscus injury: a systematic review and meta-analysis",
+      "doi": "10.1186/s43019-025-00293-2",
+      "pmid": null,
+      "year": 2025,
+      "study_type": "Systematic Review / Meta-analysis",
+      "evidence_level": 5,
+      "status": "curated",
+      "rationale": "Recent synthesis (26 studies) of meniscal scaffolds (CMI and polyurethane); anchors the meniscus topic. DOI to be reconfirmed; PMC12486669.",
+      "selected_by": "Antonio",
+      "gold_claims": [
+        {"text": "Meniscal scaffold implantation (collagen or polyurethane) improves VAS pain, Lysholm and Tegner scores from baseline to latest follow-up.", "evidence_level": 5},
+        {"text": "Treatment failure occurred in about 9.9% of Actifit and 6.7% of collagen meniscus implant patients over ~3.5 years.", "evidence_level": 5}
+      ]
+    },
+    {
+      "gold_id": "GOLD-MEN-002",
+      "area": "Meniscus Repair / Scaffold",
+      "title": "Similar clinical outcomes following collagen or polyurethane meniscal scaffold implantation: a systematic review",
+      "doi": null,
+      "pmid": "29340746",
+      "year": 2018,
+      "study_type": "Systematic Review",
+      "evidence_level": 5,
+      "status": "curated",
+      "rationale": "Systematic review comparing collagen vs polyurethane meniscal scaffolds; complements GOLD-MEN-001. PMID verifiable; DOI to be added.",
+      "selected_by": "Antonio",
+      "gold_claims": [
+        {"text": "Collagen and polyurethane meniscal scaffolds yield similar clinical outcomes.", "evidence_level": 5}
+      ]
+    },
+    {
+      "gold_id": "GOLD-EARLY-001",
+      "area": "Early Knee Osteoarthritis",
+      "title": "Toward classification criteria for early osteoarthritis of the knee",
+      "doi": "10.1016/j.semarthrit.2017.08.006",
+      "pmid": "28917712",
+      "year": 2018,
+      "study_type": "Classification Criteria / Consensus",
+      "evidence_level": null,
+      "status": "curated",
+      "rationale": "Luyten et al. classification criteria for early knee OA; foundational for defining the 'early OA' patient the platform targets. DOI/PMID to be reconfirmed.",
+      "selected_by": "Antonio",
+      "gold_claims": [
+        {"text": "Early knee osteoarthritis requires the absence of definitive radiographic OA (Kellgren-Lawrence grade 0 or 1).", "evidence_level": null},
+        {"text": "Classification of early knee OA combines knee pain with structural or arthroscopic cartilage findings."}
+      ]
+    },
+    {
+      "gold_id": "GOLD-EARLY-002",
+      "area": "Early Knee Osteoarthritis",
+      "title": "A scoping review of how early-stage knee osteoarthritis has been defined",
+      "doi": "10.1016/j.joca.2023.10.017",
+      "pmid": null,
+      "year": 2024,
+      "study_type": "Scoping Review",
+      "evidence_level": null,
+      "status": "curated",
+      "rationale": "Maps the heterogeneity of early-knee-OA definitions; included to preserve the open question that there is no single agreed definition. DOI to be reconfirmed.",
+      "selected_by": "Antonio",
+      "gold_claims": [
+        {"text": "There is no single agreed definition of early-stage knee osteoarthritis across the literature."}
+      ]
+    }
+  ],
+  "gold_topics": [
+    {
+      "topic_id": "TOPIC-PRP",
+      "name": "PRP",
+      "expected_consensus": "Evidence on intra-articular PRP for knee osteoarthritis is in conflict: several Level 1 meta-analyses (Belk 2021, Dai 2017, Nie 2021) report improved pain and function versus hyaluronic acid or control, while a rigorous placebo-controlled RCT (RESTORE, Bennell 2021) found PRP no better than saline. The consensus is therefore uncertain, and this controversy must be preserved rather than resolved in favour of one side.",
+      "min_confidence": 0.4,
+      "max_confidence": 0.75,
+      "key_claims": [
+        "PRP improves clinical outcomes compared with HA in knee osteoarthritis.",
+        "A rigorous placebo-controlled RCT found PRP no better than saline for pain or cartilage volume."
+      ],
+      "from_papers": ["GOLD-PRP-001", "GOLD-PRP-002", "GOLD-PRP-003", "GOLD-PRP-004"]
+    },
+    {
+      "topic_id": "TOPIC-EXERCISE",
+      "name": "Exercise & Rehabilitation",
+      "expected_consensus": "Land-based therapeutic exercise reduces pain and improves physical function in knee osteoarthritis, with benefit sustained for at least 2 to 6 months, at Level 1 evidence.",
+      "min_confidence": 0.6,
+      "max_confidence": 0.9,
+      "key_claims": [
+        "Land-based therapeutic exercise reduces knee pain in osteoarthritis.",
+        "Land-based therapeutic exercise improves physical function in knee osteoarthritis."
+      ],
+      "from_papers": ["GOLD-EXER-001"]
+    },
+    {
+      "topic_id": "TOPIC-MSC",
+      "name": "Mesenchymal Stem Cells",
+      "expected_consensus": "Mesenchymal stem cell injection may improve pain and function in knee osteoarthritis, but the evidence is limited and heterogeneous, and some randomized trials find it no different from placebo. The uncertainty must be preserved.",
+      "min_confidence": 0.35,
+      "max_confidence": 0.65,
+      "key_claims": [
+        "MSC therapy is associated with improved pain and function in some pooled analyses.",
+        "Some randomized trials find MSC injection no different from placebo."
+      ],
+      "from_papers": ["GOLD-MSC-001", "GOLD-MSC-002"]
+    },
+    {
+      "topic_id": "TOPIC-CARTILAGE",
+      "name": "Cartilage Regeneration",
+      "expected_consensus": "For focal knee cartilage defects, autologous chondrocyte implantation and microfracture both improve outcomes; ACI may be superior in the medium term (2-5 years), while a landmark RCT found microfracture not inferior at 2 years. Superiority is not settled.",
+      "min_confidence": 0.4,
+      "max_confidence": 0.7,
+      "key_claims": [
+        "ACI may show better quality of life and pain relief than microfracture at 2-5 years.",
+        "A landmark RCT found microfracture not inferior to ACI at 2 years."
+      ],
+      "from_papers": ["GOLD-CART-001", "GOLD-CART-002"]
+    },
+    {
+      "topic_id": "TOPIC-MENISCUS",
+      "name": "Meniscus Repair / Scaffold",
+      "expected_consensus": "Meniscal scaffolds (collagen or polyurethane) improve pain and function from baseline in partial meniscus injury, with comparable outcomes between scaffold types and modest failure rates, usually alongside concomitant procedures.",
+      "min_confidence": 0.4,
+      "max_confidence": 0.7,
+      "key_claims": [
+        "Meniscal scaffold implantation improves pain and function from baseline.",
+        "Collagen and polyurethane scaffolds yield similar clinical outcomes."
+      ],
+      "from_papers": ["GOLD-MEN-001", "GOLD-MEN-002"]
+    },
+    {
+      "topic_id": "TOPIC-EARLY-OA",
+      "name": "Early Knee Osteoarthritis",
+      "expected_consensus": "Early knee osteoarthritis is defined by knee pain and structural change in the absence of definitive radiographic OA (KL 0-1), but no single classification is universally agreed; the open question is how best to define and identify it.",
+      "min_confidence": 0.4,
+      "max_confidence": 0.7,
+      "key_claims": [
+        "Early knee OA requires absence of definitive radiographic OA (KL grade 0 or 1).",
+        "There is no single agreed definition of early-stage knee OA."
+      ],
+      "from_papers": ["GOLD-EARLY-001", "GOLD-EARLY-002"]
+    }
+  ]
+}
