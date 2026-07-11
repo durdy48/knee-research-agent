@@ -15,6 +15,7 @@ prepared placeholder — distinct from the Topic's confidence.
 """
 from __future__ import annotations
 
+import unicodedata
 from dataclasses import dataclass, field
 from typing import List, Optional
 
@@ -25,8 +26,76 @@ DISCLAIMER = (
     "el criterio de un profesional sanitario. Las decisiones son siempre tuyas y de tu médico."
 )
 
-_ACTIVITY_HINTS = ("activ", "deporte", "sport", "padel", "pádel", "correr", "running")
-_ACTIVITY_TOPICS = ("exercise", "rehab", "cartilage", "meniscus", "early")
+# Bilingual (ES↔EN) keyword lexicon per topic. The patient writes their profile in Spanish
+# but topic names are in English, so plain name matching never fires. This curated,
+# transparent map is the source of the personal match — extend it as topics evolve.
+# Keep entries accent-free and lowercase (profile text is normalised the same way).
+TOPIC_KEYWORDS = {
+    "TOPIC-PRP": {
+        "prp", "plasma rico en plaquetas", "plaquetas", "factores de crecimiento",
+        "platelet", "platelet-rich plasma", "growth factors",
+    },
+    "TOPIC-MESENCHYMAL-STEM-CELLS": {
+        "celulas madre", "celulas madre mesenquimales", "madre mesenquimales", "mesenquimales",
+        "mesenchymal", "stem cells", "mesenchymal stem cells",
+    },
+    "TOPIC-CARTILAGE-REGENERATION": {
+        "cartilago", "regeneracion de cartilago", "condral", "lesion condral", "condrocitos",
+        "condropatia", "condromalacia", "microfractura",
+        "cartilage", "chondral", "chondrocyte", "microfracture", "osteochondral",
+    },
+    "TOPIC-MENISCUS-REPAIR-SCAFFOLD": {
+        "menisco", "meniscal", "rotura de menisco", "sutura meniscal", "meniscectomia",
+        "reparacion meniscal", "meniscus", "meniscus repair", "scaffold",
+    },
+    "TOPIC-EARLY-KNEE-OSTEOARTHRITIS": {
+        "artrosis", "artrosis precoz", "artrosis temprana", "osteoartritis", "gonartrosis",
+        "desgaste articular", "osteoarthritis", "early osteoarthritis", "knee osteoarthritis",
+    },
+    "TOPIC-EXERCISE-&-REHABILITATION": {
+        "ejercicio", "rehabilitacion", "fisioterapia", "fortalecimiento", "cuadriceps",
+        "propiocepcion", "exercise", "rehabilitation", "rehab", "physiotherapy", "strengthening",
+    },
+    "TOPIC-CLINICAL-GUIDELINES-&-SYSTEMATIC-REVIEWS": {
+        "guia clinica", "guias clinicas", "recomendaciones", "revision sistematica",
+        "guideline", "guidelines", "systematic review", "recommendations",
+    },
+}
+
+# Goal keywords that signal an active lifestyle, and topic terms that serve such goals.
+_ACTIVITY_HINTS = ("activ", "deporte", "sport", "padel", "correr", "running", "gimnasio",
+                   "gym", "senderismo", "montana", "bici", "ciclismo", "caminar")
+_ACTIVITY_TOPIC_HINTS = ("exercise", "ejercicio", "rehab", "cartilage", "cartilago",
+                         "meniscus", "menisco", "early", "artrosis")
+
+
+def _norm(s: str) -> str:
+    """Lowercase and strip accents so 'Pádel'/'padel' and 'Menisco'/'menisco' compare equal."""
+    s = unicodedata.normalize("NFKD", (s or "").lower())
+    return "".join(c for c in s if not unicodedata.combining(c)).strip()
+
+
+def _topic_terms(topic: ClinicalTopic) -> set:
+    """The normalised terms that identify a topic: its name plus its bilingual aliases."""
+    terms = {_norm(topic.name)}
+    terms |= {_norm(k) for k in TOPIC_KEYWORDS.get(topic.topic_id, set())}
+    return {t for t in terms if t}
+
+
+def _matches(values: List[str], terms: set) -> bool:
+    """True if any profile value overlaps any topic term (substring, accent-insensitive)."""
+    for v in values:
+        nv = _norm(v)
+        if not nv:
+            continue
+        if any(t in nv or nv in t for t in terms):
+            return True
+    return False
+
+
+def _is_active(values: List[str]) -> bool:
+    blob = " ".join(_norm(v) for v in values)
+    return any(h in blob for h in _ACTIVITY_HINTS)
 
 
 @dataclass
@@ -47,25 +116,21 @@ class PersonalInsightReport:
     disclaimer: str = DISCLAIMER
 
 
-def _kw(values: List[str]) -> List[str]:
-    return [v.lower() for v in values if v]
-
-
-def _clinical_match(topic_text: str, ctx: PersonalContext) -> float:
-    facts = _kw(ctx.patient.diagnoses + ctx.patient.injury_history + ctx.patient.surgeries)
-    if not facts:
+def _clinical_match(terms: set, ctx: PersonalContext) -> float:
+    facts = ctx.patient.diagnoses + ctx.patient.injury_history + ctx.patient.surgeries
+    if not any(f.strip() for f in facts if f):
         return 0.5  # unknown profile -> neutral, honest
-    return 1.0 if any(f in topic_text or topic_text in f for f in facts) else 0.3
+    return 1.0 if _matches(facts, terms) else 0.3
 
 
-def _goal_match(topic_text: str, ctx: PersonalContext) -> float:
-    goals = _kw(ctx.goals.goals)
-    active = any(h in g for g in goals for h in _ACTIVITY_HINTS)
-    if not goals:
+def _goal_match(terms: set, ctx: PersonalContext) -> float:
+    goals = ctx.goals.goals
+    if not any(g.strip() for g in goals if g):
         return 0.5
-    if any(g in topic_text for g in goals):
+    if _matches(goals, terms):
         return 1.0
-    if active and any(t in topic_text for t in _ACTIVITY_TOPICS):
+    blob = " ".join(terms)
+    if _is_active(goals) and any(h in blob for h in _ACTIVITY_TOPIC_HINTS):
         return 0.8
     return 0.3
 
@@ -85,16 +150,15 @@ class PersonalInsightEngine:
                  ctx: PersonalContext) -> PersonalInsightReport:
         items: List[InsightItem] = []
         red = False
-        treatments = _kw(ctx.variables.current_treatments)
 
         for t in topics:
             ds = deltas_by_topic.get(t.topic_id, [])
             if not ds:
                 continue
             impacts = {d.get("impact") for d in ds}
-            text = f"{t.name}".lower()
+            terms = _topic_terms(t)
             relevance = round(sum([
-                _clinical_match(text, ctx), _goal_match(text, ctx),
+                _clinical_match(terms, ctx), _goal_match(terms, ctx),
                 float(t.confidence), _novelty(impacts),
             ]) / 4, 3)
 
@@ -102,7 +166,7 @@ class PersonalInsightEngine:
                 msg = (f"Se mantiene o aparece una controversia en {t.name}; no hay evidencia "
                        "suficiente para cambiar la estrategia actual.")
                 # Red only if it touches a treatment the person is currently on.
-                if any(tr in text for tr in treatments):
+                if _matches(ctx.variables.current_treatments, terms):
                     red = True
             else:
                 msg = (f"Nueva evidencia en {t.name} que conviene seguir; todavía no modifica "
